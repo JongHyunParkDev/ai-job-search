@@ -1,0 +1,109 @@
+{
+  "links": {
+    "prev": null,
+    "next": "/api/v4/search?result_items=jobs&country=kr&is_recommend_tags=False&locations=busan&locations=seoul.gangnam-gu&years=3&limit=8&offset=8&job_sort=job.latest_order&query=%EB%B0%B1%EC%97%94%EB%93%9C"
+  },
+  "data": {
+    "jobs": [
+      {
+        "id": 392770,
+        "position": "백엔드 개발자 (Junior/1~3년)",
+        "status": "active",
+        "due_time": null,
+        "annual_from": 1,
+        "annual_to": 3,
+        "company": {
+          "id": 31014,
+          "name": "인딥에이아이",
+          "industry_name": "IT, 컨텐츠"
+        },
+        "address": {
+          "location": "서울",
+          "district": "강남구",
+          "location_key": "seoul",
+          "district_key": "seoul.gangnam-gu"
+        },
+        "category_tags": [
+          {
+            "parent_id": 518,
+            "id": 872
+          }
+        ]
+      },
+      {
+        "id": 391396,
+        "position": "백엔드 엔지니어(신입~5년 이하)",
+        "status": "active",
+        "due_time": "2026-11-15",
+        "annual_from": 0,
+        "annual_to": 5,
+        "company": {
+          "id": 4527,
+          "name": "포스타입",
+          "industry_name": "IT, 컨텐츠"
+        },
+        "address": {
+          "location": "서울",
+          "district": "강남구",
+          "location_key": "seoul",
+          "district_key": "seoul.gangnam-gu"
+        },
+        "category_tags": [
+          {
+            "parent_id": 518,
+            "id": 674
+          },
+          {
+            "parent_id": 518,
+            "id": 872
+          },
+          {
+            "parent_id": 518,
+            "id": 893
+          }
+        ]
+      },
+      {
+        "id": 391211,
+        "position": "백엔드 개발자",
+        "status": "active",
+        "due_time": null,
+        "annual_from": 3,
+        "annual_to": 8,
+        "company": {
+          "id": 23211,
+          "name": "씨디알아이(CDRI)",
+          "industry_name": "IT, 컨텐츠"
+        },
+        "address": {
+          "location": "서울",
+          "district": "강남구",
+          "location_key": "seoul",
+          "district_key": "seoul.gangnam-gu"
+        },
+        "category_tags": [
+          {
+            "parent_id": 518,
+            "id": 660
+          },
+          {
+            "parent_id": 518,
+            "id": 872
+          },
+          {
+            "parent_id": 518,
+            "id": 10110
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "position": "",
+        "company": null
+      },
+      {
+        "position": "no id"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "job": {
+    "id": 393427,
+    "position": "Sr. Data Platform Engineer (차장-부장급)",
+    "status": "active",
+    "due_time": "2026-11-09",
+    "annual_from": 10,
+    "annual_to": 100,
+    "skill_tags": [],
+    "category_tags": [
+      {
+        "parent_id": 518,
+        "id": 655
+      }
+    ],
+    "company": {
+      "id": 3198,
+      "name": "라이나생명보험",
+      "industry_name": "금융"
+    },
+    "address": {
+      "location": "서울",
+      "district": null,
+      "full_location": "서울특별시 종로구 삼봉로 48(청진동, 라이나타워)",
+      "location_key": null,
+      "district_key": null,
+      "country": "한국"
+    },
+    "company_tags": [
+      {
+        "title": "연봉상위6~10%",
+        "id": 10024,
+        "kind_title": "COMPANY_MANAGEMENT"
+      },
+      {
+        "title": "퇴사율5%이하",
+        "id": 10036,
+        "kind_title": "COMPANY_MANAGEMENT"
+      },
+      {
+        "title": "301~1,000명",
+        "id": 10030,
+        "kind_title": "COMPANY_MANAGEMENT"
+      }
+    ],
+    "detail": {
+      "requirements": "[저희는 이런 분을 찾고 있습니다]\n\n* 필수\n- Azure 등 클라우드 기반 데이터플랫폼 아키텍처 설계, 운영 경험이 5년 이상이신 분\n- Platform Engineering 실무 경력 10년 이상이신 분\n- 데이터 엔지니어링 또는 데이터 거버넌스 팀 리딩 경험이 있으신 분\n- 비즈니스 영어 커뮤니케이션이 가능하신 분\n- 금융업권 데이터 관련 법규(개인정보보호법, 신용정보법 등)에 대한 이해가 있으신 분",
+      "main_tasks": "[저희와 함께 이런 일을 할 수 있습니다]\n\n- Azure 기반 데이터플랫폼(KDP)의 아키텍처 및 로드맵 총괄\n- Databricks, ADF 등 Azure 환경 데이터 솔루션 운영 및 고도화 리딩\n- 금융권 망분리 규제환경 하에서 클라우드 기반 신기술(AI/BI 솔루션 등) 도입 전략 수립 및 실행\n- 계열사, 지주사 데이터 통합 및 R&R 정의, 거버넌스 체계 수립\n- Global Stakeholder(Chubb Group)와 커뮤니케이션 및 협업과제 조율",
+      "intro": "[라이나생명 데이터플랫폼팀을 ​소개합니다]\n\n라이나생명 ​데이터플랫폼팀은 ​임직원과 시스템이 ​생성, 사용하는 모든 데이터를 ​관리 ​및 가공하여, ​신뢰할 수 있는 ​데이터를 제공하고 ​이를 ​통해 가치를 ​창출합니다. ​Azure ​기반 전사 데이터플랫폼(KDP)의 ​안정적인 ​운영과 고도화를 통해 ​데이터 ​접근성과 ​활용성을 높이고, 데이터 ​기반 의사결정 ​체계를 ​구축하는 것을 ​목표로 합니다.\n\n더불어 ​데이터 ​기반 API, Dashboard, ​AI Agent ​등 데이터 프로덕트를 생성하고 제공함으로써, 다양한 업",
+      "benefits": "9-17 출근제, 복지 포인트, 사내 양의원/한의원, 피트니스 센터, 사내 도서관, 사외교육 지원, 자격증 취득 지원, 설/추석 포인트, 여름 휴가비, 장기 근속자 포상, 4대보험, 건강보험료 지원 등",
+      "preferred_points": "* 우대\n- 금융권 규제환경 하에서 신기술 도입을 위한 대안 설계 및 리스크 관리 역량을 갖추신 분\n- 보험업 데이터 Domain 이해 및 계열사 간 데이터 공유체계 구축 경험이 있으신 분\n- ADF, ADLS, Databricks 등 Azure 데이터 스택에 대한 기술적 이해 및 의사결정 역량을 갖추신 분\n- 데이터플랫폼 로드맵 수립 및 우선순위화 체계 수립 역량을 갖추신 분"
+    }
+  }
+}

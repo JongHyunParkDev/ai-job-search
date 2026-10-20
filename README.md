@@ -6,6 +6,8 @@
 
 *The job search that runs on your machine.*
 
+> 🇰🇷 **Korean edition (한국판) - `ko-market` branch.** Adds Korean job-portal skills (Saramin, JobKorea, Wanted, Incruit, JobPlanet) and Hangul CV/cover-letter templates on top of upstream [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search). 한국어 안내는 [README.ko.md](README.ko.md)를 보세요. Questions about the Korean edition go to this fork's issues, not upstream.
+
 <p align="center">
   <a href="https://trendshift.io/repositories/43622?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-43622" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/43622/daily" alt="MadsLorentzen%2Fai-job-search | Trendshift" width="250" height="55"/></a>
 </p>
@@ -16,7 +18,7 @@ An AI-powered job application framework built on [Claude Code](https://claude.co
 
 > Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Anthropic. Anthropic and Claude Code are referenced only to describe the toolchain this workflow uses.
 >
-> This project has **no affiliated cryptocurrency, token, or paid sponsorship program**. Anything claiming otherwise is unauthorized and should be treated as a scam. The only ways to support the project are the Ko-fi link below and contributing on GitHub.
+> This project has **no affiliated cryptocurrency, token, or paid sponsorship program**. Anything claiming otherwise is unauthorized and should be treated as a scam. The only ways to support the project are the Ko-fi link below and contributing on GitHub. (Korean edition: the Buy Me a Coffee link below goes to the maintainer of this fork's Korean adaptation, not to the original author.)
 
 ## Does it actually work?
 
@@ -35,6 +37,14 @@ Sixty-nine tailored applications, twenty first interviews, and one signed contra
   <a href="https://ko-fi.com/madslorentzen">
     <img src="https://storage.ko-fi.com/cdn/kofi3.png?v=6" alt="Buy me a coffee at ko-fi.com" height="40">
   </a>
+  <br><sub>Original author (원작자)</sub>
+</p>
+
+<p align="center">
+  <a href="https://buymeacoffee.com/eomgr886">
+    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Korean%20edition-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee - Korean edition maintainer" height="28">
+  </a>
+  <br><sub>Korean edition maintainer (한국판 편집자)</sub>
 </p>
 
 ## What this is

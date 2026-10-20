@@ -65,6 +65,12 @@ ALLOWED_PERMISSIONS = {
     "Bash(bun run .agents/skills/jobnet-search/cli/src/cli.ts:*)",
     "Bash(bun run .agents/skills/linkedin-search/cli/src/cli.ts:*)",
     "Bash(bun run .agents/skills/freehire-search/cli/src/cli.ts:*)",
+    # Korean portals (ko-market fork). jobplanet-search is deliberately absent:
+    # its live test does not pass yet (Cloudflare challenge), see its SKILL.md.
+    "Bash(bun run .agents/skills/saramin-search/cli/src/cli.ts:*)",
+    "Bash(bun run .agents/skills/jobkorea-search/cli/src/cli.ts:*)",
+    "Bash(bun run .agents/skills/wanted-search/cli/src/cli.ts:*)",
+    "Bash(bun run .agents/skills/incruit-search/cli/src/cli.ts:*)",
     "Bash(python salary_lookup.py:*)",
     "Bash(python3 salary_lookup.py:*)",
     "Bash(python tools/rank_state.py:*)",
@@ -204,6 +210,9 @@ ALLOWED_IGNORE_NEGATIONS = {
     "!cover_letters/OpenFonts/fonts/**",
     "!cv/main_example.tex",
     "!cover_letters/cover_example.tex",
+    # Korean-language example templates (ko-market fork); placeholder content only.
+    "!cv/main_example_ko.tex",
+    "!cover_letters/cover_example_ko.tex",
     "!documents/**/.gitkeep",
 }
 

@@ -2,6 +2,9 @@
 \ProvidesClass{cover}[2024/04/30 Cover letter class]
 \NeedsTeXFormat{LaTeX2e}
 \DeclareOption{print}{\def\@cv@print{}}
+% Korean (Hangul) support: \documentclass[korean]{cover}. Loads xeCJK so
+% Hangul falls back to a CJK font while Latin text keeps Lato/Raleway.
+\DeclareOption{korean}{\def\@cover@korean{}}
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{article}
 }
@@ -29,6 +32,22 @@
 % Set main fonts
 \setmainfont[Color=primary, Path = OpenFonts/fonts/lato/,BoldItalicFont=Lato-RegIta,BoldFont=Lato-Reg,ItalicFont=Lato-LigIta]{Lato-Lig}
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text, Path = OpenFonts/fonts/raleway/]{Raleway-ExtraLight}
+
+% Hangul font (korean option only). First installed font wins; override with
+% \setCJKmainfont{<font>} in the document preamble. Static fonts come first:
+% xdvipdfmx cannot embed variable fonts such as the NotoSansKR-VF.ttf that
+% Windows ships, so plain "Noto Sans KR" is the last resort.
+\ifdefined\@cover@korean
+\RequirePackage{xeCJK}
+\xeCJKsetup{CJKspace=true}
+\IfFontExistsTF{Noto Sans CJK KR}{\setCJKmainfont{Noto Sans CJK KR}}{%
+\IfFontExistsTF{NanumGothic}{\setCJKmainfont{NanumGothic}}{%
+\IfFontExistsTF{Malgun Gothic}{\setCJKmainfont{Malgun Gothic}}{%
+\IfFontExistsTF{Apple SD Gothic Neo}{\setCJKmainfont{Apple SD Gothic Neo}}{%
+\IfFontExistsTF{UnDotum}{\setCJKmainfont{UnDotum}}{%
+\IfFontExistsTF{Noto Sans KR}{\setCJKmainfont{Noto Sans KR}}{%
+\ClassError{cover}{No Hangul font found}{Install Noto Sans CJK KR or NanumGothic, or set \protect\setCJKmainfont{<font>}}}}}}}}
+\fi
 
 % Date command
 \setlength{\TPHorizModule}{1mm}

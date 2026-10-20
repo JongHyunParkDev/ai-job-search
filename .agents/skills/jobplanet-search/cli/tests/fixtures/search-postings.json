@@ -1,0 +1,194 @@
+{
+  "status": "success",
+  "code": 200,
+  "data": {
+    "total_count": 745,
+    "recruits": [
+      {
+        "id": 1755787,
+        "bookmark": false,
+        "image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "low_image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "title": "[코리아교육그룹] IT지원실 백엔드 개발자 채용",
+        "occupation_names": {
+          "level1": [
+            "개발"
+          ],
+          "level2": [
+            "백엔드 개발",
+            "개발"
+          ]
+        },
+        "is_fit_messages": false,
+        "fee": "7%",
+        "job_applicant_type": "user",
+        "annual": {
+          "type": [
+            2
+          ],
+          "years": 5,
+          "maximum_years": 0,
+          "text": "경력"
+        },
+        "recruitment_text": [
+          "5년 이상"
+        ],
+        "job_type": "정규직",
+        "posting_type": "subscription",
+        "posting_apply_type": "jobkorea_inlink",
+        "external_url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50200166?utm_source=jobplanet&utm_medium=owned&utm_campaign=synergy_external_jobplanet_web_nonad_26y06m1w&utm_content=non_jobposting&utm_term=vari_dynamic",
+        "jobkorea_posting_id": 50200166,
+        "skills": [],
+        "reward": 0,
+        "reward_text": "",
+        "reward_type_text": "",
+        "deadline_message": "~11/18(수)",
+        "logo_thumb_url": "https://jpassets.jobplanet.co.kr/production/uploads/company/logo/311294/thumb_190212_%EC%BD%94%EB%A6%AC%EC%95%84%EA%B5%90%EC%9C%A1%EA%B7%B8%EB%A3%B9%20CI%EB%B3%80%EA%B2%BD.jpg",
+        "pref_text": "승진 기회 3.2",
+        "career_text": "5년↑",
+        "cities": [
+          "서울"
+        ],
+        "company": {
+          "id": 311294,
+          "logo": "https://jpassets.jobplanet.co.kr/production/uploads/company/logo/311294/thumb_190212_%EC%BD%94%EB%A6%AC%EC%95%84%EA%B5%90%EC%9C%A1%EA%B7%B8%EB%A3%B9%20CI%EB%B3%80%EA%B2%BD.jpg",
+          "name": "(주)코리아교육그룹",
+          "grade": 2.6,
+          "grade_count": 259,
+          "city_name": "서울",
+          "is_branding": true
+        },
+        "start_at": "2026-10-20",
+        "end_at": "2026-11-18",
+        "created_at": "2026-10-20T08:40:16.000+09:00",
+        "updated_at": "2026-10-20T08:40:27.000+09:00",
+        "score": 0.26743233
+      },
+      {
+        "id": 1755894,
+        "bookmark": false,
+        "image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "low_image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "title": "[사라바] Senior Backend  Product Developer  (5년 이상)",
+        "occupation_names": {
+          "level1": [
+            "개발",
+            "데이터"
+          ],
+          "level2": [
+            "백엔드 개발",
+            "개발",
+            "데이터 엔지니어",
+            "데이터",
+            "안드로이드 개발"
+          ]
+        },
+        "is_fit_messages": false,
+        "fee": "7%",
+        "job_applicant_type": "user",
+        "annual": {
+          "type": [
+            2
+          ],
+          "years": 5,
+          "maximum_years": 0,
+          "text": "경력"
+        },
+        "recruitment_text": [
+          "5년 이상"
+        ],
+        "job_type": "정규직",
+        "posting_type": "subscription",
+        "posting_apply_type": "jobkorea_inlink",
+        "external_url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50200393?utm_source=jobplanet&utm_medium=owned&utm_campaign=synergy_external_jobplanet_web_nonad_26y06m1w&utm_content=non_jobposting&utm_term=vari_dynamic",
+        "jobkorea_posting_id": 50200393,
+        "skills": [],
+        "reward": 0,
+        "reward_text": "",
+        "reward_type_text": "",
+        "deadline_message": "~12/18(금)",
+        "logo_thumb_url": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/12313/company_logo.png",
+        "pref_text": null,
+        "career_text": "5년↑",
+        "cities": [
+          "서울"
+        ],
+        "company": {
+          "id": 377482,
+          "logo": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13131/default_logo.png",
+          "name": "(주)스너그스튜디오",
+          "grade": 0,
+          "grade_count": 0,
+          "city_name": "서울",
+          "is_branding": false
+        },
+        "start_at": "2026-10-20",
+        "end_at": "2026-12-18",
+        "created_at": "2026-10-20T08:40:16.000+09:00",
+        "updated_at": "2026-10-20T08:40:27.000+09:00",
+        "score": 0.20205231
+      },
+      {
+        "id": 1753564,
+        "bookmark": false,
+        "image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "low_image": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13148/job_posting_default_thumbnail.jpg",
+        "title": "React 경력 초급기술자 구인",
+        "occupation_names": {
+          "level1": [
+            "개발"
+          ],
+          "level2": [
+            "백엔드 개발",
+            "개발"
+          ]
+        },
+        "is_fit_messages": false,
+        "fee": "7%",
+        "job_applicant_type": "user",
+        "annual": {
+          "type": [
+            2
+          ],
+          "years": 3,
+          "maximum_years": 0,
+          "text": "경력"
+        },
+        "recruitment_text": [
+          "3년 이상"
+        ],
+        "job_type": "정규직",
+        "posting_type": "subscription",
+        "posting_apply_type": "jobkorea_inlink",
+        "external_url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50196113?utm_source=jobplanet&utm_medium=owned&utm_campaign=synergy_external_jobplanet_web_nonad_26y06m1w&utm_content=non_jobposting&utm_term=vari_dynamic",
+        "jobkorea_posting_id": 50196113,
+        "skills": [],
+        "reward": 0,
+        "reward_text": "",
+        "reward_type_text": "",
+        "deadline_message": "D-2",
+        "logo_thumb_url": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/12313/company_logo.png",
+        "pref_text": null,
+        "career_text": "3년↑",
+        "cities": [
+          "서울"
+        ],
+        "company": {
+          "id": 536309,
+          "logo": "https://jpassets.jobplanet.co.kr/production/uploads/material/media/13131/default_logo.png",
+          "name": "(주)보람정보기술",
+          "grade": 0,
+          "grade_count": 0,
+          "city_name": "",
+          "is_branding": false
+        },
+        "start_at": "2026-10-20",
+        "end_at": "2026-10-22",
+        "created_at": "2026-10-20T08:40:05.000+09:00",
+        "updated_at": "2026-10-20T08:40:27.000+09:00",
+        "score": 0.39939255
+      }
+    ]
+  },
+  "csrf": null
+}

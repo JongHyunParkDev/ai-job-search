@@ -159,6 +159,7 @@ Escape these wherever they appear in body text:
 - Same template structure, just write content in the posting's language
 - Adjust date format to local convention
 - Adjust closing to local convention (e.g. "Med venlig hilsen," for Danish)
+- **Korean (한국어):** start from `cover_letters/cover_example_ko.tex` (`\documentclass[korean]{cover}`, xelatex, needs a Hangul font such as Noto Sans KR). Write in 존댓말 (합니다체), date as `YYYY년 M월 D일`, close with "감사합니다." and sign "[이름] 드림". Many Korean employers collect a Q&A-style 자기소개서 (성장과정, 지원동기, 직무역량, 입사 후 포부) in their own form with per-question character limits (글자수, usually counted with spaces): answer those in the form, respecting each limit, rather than attaching a letter.
 
 ## Checklist Before Finalizing
 - [ ] No em-dashes (use commas or periods instead)

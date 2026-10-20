@@ -65,10 +65,12 @@ skills-lock.json
 # artifacts like main_example.pdf/.aux.
 cv/main_*.*
 !cv/main_example.tex
+!cv/main_example_ko.tex
 cv/*.txt
 cover_letters/cover_*.*
 cover_letters/Cover_*.*
 !cover_letters/cover_example.tex
+!cover_letters/cover_example_ko.tex
 
 # documents/ subfolder contents are personal — only README and folder structure are tracked
 documents/cv/**

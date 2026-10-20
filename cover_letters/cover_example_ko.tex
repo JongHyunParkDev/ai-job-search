@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 자기소개서 (Korean cover letter) - [Company], [Role]
+%
+% Korean-language variant of cover_example.tex. Same structure, compiled with
+% xelatex; the [korean] class option loads xeCJK and picks the first installed
+% Hangul font (Noto Sans KR, NanumGothic, Malgun Gothic, UnDotum).
+% Must compile with xelatex to exactly 1 page.
+%
+% Note: many Korean employers ask for a Q&A-style 자기소개서 (성장과정,
+% 지원동기, 직무역량, 입사 후 포부) in their own web form. Use this letter for
+% postings that accept a free-form cover letter (foreign companies, startups,
+% Wanted/LinkedIn applications); answer form questions in the form itself.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[korean]{cover}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\rfoot{\thepage \hspace{0pt}}
+\thispagestyle{empty}
+\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     TITLE NAME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{}{\Huge{[YOUR NAME]}}{  \href{mailto:your.email@example.com}{your.email@example.com} | [+82 10-XXXX-XXXX] |  \urlstyle{same}\href{https://www.linkedin.com/in/yourprofile}{LinkedIn}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     MAIN COVER LETTER CONTENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\currentdate{[YYYY년 M월 D일]}
+\lettercontent{[회사명] 채용 담당자님께,}
+
+\lettercontent{[도입: 지원 직무와 공고를 본 경로를 밝히고, 이 직무와 가장 강하게 연결되는 경험을 한 문장으로 제시합니다. 2--3문장.]}
+
+\lettercontent{[본문: 공고의 주요 업무에 맞춘 가장 관련성 높은 경험. 이어서 3--5개의 구체적인 성과:]}
+
+{\raggedright\fontspec[Path = OpenFonts/fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont
+\begin{itemize}
+    \item \textbf{[성과 1]:} [가능하면 수치가 들어간 구체적인 결과]
+    \item \textbf{[성과 2]:} [공고의 자격 요건에 대응하는 기술 또는 프로젝트]
+    \item \textbf{[성과 3]:} [우대 사항에 대한 근거]
+\end{itemize}\par}
+\vspace{6pt}
+
+\lettercontent{[지원 동기: 왜 이 회사인지. 확인된 구체적 사실(제품, 공개된 사업 방향, 팀)을 언급합니다. 일반론은 쓰지 않습니다.]}
+
+\lettercontent{[입사 후 포부 / 조직 적합성: 행동 강점과 팀에 기여할 점, 2--3문장.]}
+
+\lettercontent{검토해 주셔서 감사합니다. 좋은 기회로 뵙기를 기대하겠습니다.}
+
+\begin{flushright}
+% Note: no trailing \\ inside \closing{} - cover.cls appends its own \\, and a
+% doubled break triggers "There's no line here to end."
+\closing{감사합니다.}
+
+\signature{[YOUR NAME] 드림}
+\end{flushright}
+\end{document}
