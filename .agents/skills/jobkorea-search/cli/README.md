@@ -41,5 +41,6 @@ bun run src/cli.ts detail 50087398 --format plain
 
 ```bash
 bun run typecheck
-bun run test   # offline parsing/validation tests + a 3-request live smoke test
+bun run test                  # offline: parsing/validation tests + mocked fetch
+JOBKOREA_LIVE=1 bun run test  # adds a 3-request live smoke test
 ```

@@ -43,7 +43,8 @@ bun run src/cli.ts detail 2610110000086 --format plain
 
 ```bash
 bun run typecheck
-bun run test   # offline parser tests on fixtures + one live search and one live detail
+bun run test                 # offline: parser tests on fixtures + argument validation
+INCRUIT_LIVE=1 bun run test  # adds one live search and one live detail
 ```
 
 See `../url-reference.md` for endpoints, parameters and parse anchors.

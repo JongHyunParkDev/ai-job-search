@@ -3,13 +3,15 @@ import { parseJSON, runCLI } from "./helpers"
 
 // Live smoke test against www.jobkorea.co.kr: one search and one detail
 // (3 requests total). Keep it this small - see the personal-use note.
+// Opt-in (JOBKOREA_LIVE=1) so the default `bun test` run stays offline.
+const live = process.env.JOBKOREA_LIVE === "1"
 
 interface SearchOut {
   meta: { count: number; page: number; total: number | null }
   results: Array<Record<string, string | null>>
 }
 
-describe("live", () => {
+describe.skipIf(!live)("live", () => {
   let firstId: string | null = null
 
   test("search returns real results", async () => {

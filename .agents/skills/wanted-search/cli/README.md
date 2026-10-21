@@ -38,5 +38,6 @@ bun run src/cli.ts detail 393427 --format plain
 
 ```bash
 bun run typecheck
-bun run test   # offline parser/flag tests + one live search against wanted.co.kr
+bun run test                 # offline: parser/flag tests on fixtures
+WANTED_LIVE=1 bun run test   # adds one live search against wanted.co.kr
 ```

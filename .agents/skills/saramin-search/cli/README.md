@@ -40,5 +40,6 @@ bun run src/cli.ts detail 55210151 --format plain
 
 ```bash
 bun run typecheck
-bun run test   # offline parser/validation tests + one live search request
+bun run test                 # offline: parser/validation tests + mocked fetch
+SARAMIN_LIVE=1 bun run test  # adds one live search request
 ```

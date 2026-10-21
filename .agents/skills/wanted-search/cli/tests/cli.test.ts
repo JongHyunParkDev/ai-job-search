@@ -29,7 +29,10 @@ describe("flag validation (offline)", () => {
 })
 
 // Live smoke test: one search request against wanted.co.kr.
-describe("live search", () => {
+// Opt-in (WANTED_LIVE=1) so the default `bun test` run stays offline.
+const live = process.env.WANTED_LIVE === "1"
+
+describe.skipIf(!live)("live search", () => {
   test("search returns real results in the contract shape", async () => {
     const out = parseJSON<SearchOut>(await runCLI(["search", "-q", "백엔드 개발자", "-l", "서울", "--limit", "3"]))
     expect(out.meta.page).toBe(1)

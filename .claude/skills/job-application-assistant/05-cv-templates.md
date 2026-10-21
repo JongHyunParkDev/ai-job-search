@@ -13,7 +13,7 @@ All CVs use the moderncv LaTeX package with the "banking" style and "blue" color
 **Output file:** `cv/main_<company>_<role>.tex`
 **Compile with:** **lualatex** on MiKTeX/TeX Live. pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors; lualatex handles the same sources cleanly.
 **Master reference:** `cv/main_example.tex` (comprehensive CV with all competencies, experience, and achievements - use as source when building targeted CVs)
-**Korean postings (한국어 이력서):** start from `cv/main_example_ko.tex` instead - same layout, plus a `luatexko` block that renders Hangul with the first installed Korean font (Noto Sans KR, NanumGothic, Malgun Gothic). Same lualatex command.
+**Korean postings (한국어 이력서):** start from `cv/main_example_ko.tex` instead - same layout, plus a luaotfload font fallback that renders Hangul with the first installed Korean font (Noto Sans CJK KR, NanumGothic, Malgun Gothic, Apple SD Gothic Neo, Noto Sans KR). Same lualatex command.
 
 ### Compile command
 

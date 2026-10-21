@@ -65,7 +65,10 @@ describe("htmlFetch", () => {
   })
 })
 
-describe("live smoke test (1 request)", () => {
+// Opt-in (SARAMIN_LIVE=1) so the default `bun test` run stays offline.
+const live = process.env.SARAMIN_LIVE === "1"
+
+describe.skipIf(!live)("live smoke test (1 request)", () => {
   test("search returns real results", async () => {
     const r = await runCLI(["search", "-q", "백엔드", "-l", "서울", "--limit", "3"])
     const out = parseJSON<SearchOut>(r)

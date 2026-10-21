@@ -34,7 +34,10 @@ describe("argument validation (offline)", () => {
 })
 
 // One live search + one live detail: keep request volume low.
-describe("live smoke test", () => {
+// Opt-in (INCRUIT_LIVE=1) so the default `bun test` run stays offline.
+const live = process.env.INCRUIT_LIVE === "1"
+
+describe.skipIf(!live)("live smoke test", () => {
   test("search returns real results and detail parses one of them", async () => {
     const out = parseJSON<SearchOut>(await runCLI(["search", "-q", "백엔드 개발자", "--limit", "3"]))
     expect(out.meta.page).toBe(1)
