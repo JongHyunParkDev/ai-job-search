@@ -220,6 +220,99 @@ per-file diff commands.
   that code page (e.g. Polish, Cyrillic, or CJK) raised `UnicodeEncodeError` when writing stdout.
   Similarly, `robots_check.py` now guarantees UTF-8 standard streams across platforms.
 
+- **Every workflow spec invokes Python as `python3`, with a single Windows note at first use**
+  (#678, fixes #669, `.claude/commands/apply.md`, `.claude/commands/rank.md`,
+  `.claude/skills/job-scraper/SKILL.md`,
+  `.claude/skills/job-application-assistant/04-job-evaluation.md`,
+  `.claude/skills/job-application-assistant/05-cv-templates.md`,
+  `.claude/skills/job-application-assistant/09-web-research.md`, `CLAUDE.md`,
+  `tests/test_python_command_specs.py`) - the specs split between spellings:
+  `/apply` and the skill files it reads (`04-job-evaluation`, `05-cv-templates`)
+  plus `CLAUDE.md` ran bare `python salary_lookup.py` / `python tools/verify_*.py`
+  while `/rank`, `/scrape` and `09-web-research` ran `python3 ...`, so one
+  `/apply` run saw both spellings for the same commands. Every command now reads
+  `python3`, and each spec that runs a tool carries one Windows note at its
+  first use: run the tools as `python` there, because a python.org install
+  ships no `python3` and that name reaches the Microsoft Store alias, which
+  either exits 49 with no output or starts a separate Store Python without the
+  packages `pip` installed (such as pypdf). `.claude/settings.json` already
+  allows both spellings, so no settings or guard change.
+  `tests/test_python_command_specs.py` globs `.claude/commands/*.md`,
+  `.claude/skills/**/*.md` and `.claude/agents/*.md` and fails if any spec
+  runs a bare `python`, or a spec that runs a tool carries no note, a second
+  note, or one after its first command.
+
+- **A saved page that is not UTF-8 is read in the charset it declares** (#690, `tools/page_decode.py`,
+  `tools/posting_guard.py`, `tools/fetch_page.py`, `tests/test_page_decode.py`) - `posting_guard.py --html`
+  and `fetch_page.py --text` decoded a page saved by `fetch_page.py` as UTF-8 with replacement, so a
+  posting served in EUC-KR, Shift_JIS, windows-1251 or another legacy charset reached the gate and the
+  scorer as replacement characters while the gate still reported it clean (a live job.incruit.com
+  posting came out as 1206 U+FFFD and 4 Hangul characters). Bytes that are valid UTF-8 decode exactly
+  as before; otherwise a UTF-16 byte order mark or a `<meta>` charset in the first 1024 bytes picks the
+  codec browsers use for that label, from a fixed list (so a page cannot select UTF-7), and a missing
+  or unknown label keeps the old result. The homoglyph check now sees Cyrillic letters on a
+  windows-1251 page. Text input to the gate (`--text`) is unchanged.
+
+- **freehire-search's User-Agent no longer makes github.com look like a job board** (#689,
+  `.agents/skills/freehire-search/cli/src/helpers.ts`, `url-reference.md`,
+  `tests/test_apply_host_check.py`) - `/apply` derives each installed portal's board hosts from the
+  host literals in its `cli/src`, and the contact URL added to freehire's User-Agent in #633 put
+  `github.com` among them, so a "posting" published in any GitHub repo or gist classified as an
+  installed portal instead of getting the `⚠ Unverified source host` warning. The User-Agent keeps
+  the `owner/project/version` name freehire's API docs ask for and drops the optional URL:
+  `MadsLorentzen/ai-job-search/1.0 (freehire-search)`. The host-check test now lists `github.com` and
+  `gist.github.com` postings among the hosts that must stay unverified.
+
+- **The `/reset` replay tests find a Bash that actually runs the script on Windows** (#671,
+  `tests/_bash.py`, `tests/test_bash.py`, `tests/test_reset_command.py`, `tests/test_reset_documents.py`) -
+  the tests replayed the documented `/reset` commands with whichever `bash` came first on PATH. On
+  Windows that is often the WSL launcher, which expands variables before WSL's bash sees them, so the
+  replayed script deleted nothing and two tests failed. Each candidate is now probed with
+  `x=ok; test "$x" = ok`, Git for Windows' own Bash is tried when the launcher fails the probe, and the
+  replay checks skip only when no usable shell is found.
+
+- **Jobbank and Jobnet `detail` reject posting URLs on other hosts** (#672,
+  `.agents/skills/jobbank-search/cli/src/helpers.ts`, `.agents/skills/jobnet-search/cli/src/helpers.ts`) -
+  previously, a matching `/job/<id>` or `/find-job/<id>` path on any website was silently interpreted as
+  a posting on the selected portal. Both CLIs now require an HTTP(S) URL on their own domain and extract
+  the ID from its pathname only. Bare IDs, portal links without a scheme, portal subdomains, and Jobnet's
+  legacy posting routes remain valid.
+
+- **`posting_guard.py` quotes the part of a long line that triggered the flag**
+  (#704, `tools/posting_guard.py`, `tests/test_posting_guard.py`) - the excerpt was a fixed
+  `line[:200]`, so when the trigger sat later in a long paragraph the user saw a ⚠ with 200
+  characters of ordinary company prose and nothing suspicious in them. `apply.md` relies on
+  the quote to let the user dismiss a flag in a second, and WebFetch paragraphs and portal
+  plain output routinely run past 200 characters. The excerpt is now a window of the same
+  length around the first match, with `…` marking a cut at either end; lines up to 200
+  characters are quoted whole as before. One new case fails on master; the short-line case
+  pins the unchanged behaviour.
+
+- **Jobnet CLI detail command emits degraded search summary signal on stdout** (#550, fixes #549,
+  `.agents/skills/jobnet-search/cli/src/commands/detail.ts`,
+  `.agents/skills/jobnet-search/cli/tests/detail-fallback.test.ts`,
+  `.agents/skills/jobnet-search/cli/tests/detail-formatting.test.ts`,
+  `.agents/skills/jobnet-search/cli/README.md`) - when `runDetail`
+  resolved an external ad via the search endpoint fallback introduced in #432, it wrote an
+  informational note directly to `process.stderr`. To keep `jobnet-search` stderr behavior
+  consistent with the other portal CLIs (silent `stderr` on exit 0), the signal that detail
+  was synthesized from search results has moved to `stdout` as a `source: "search-fallback"`
+  field on the detail object, rendered in plain and table output as `Source: search-fallback
+  (detail unavailable, synthesised from search)`, documented in the CLI README, and covered
+  by automated tests.
+
+- **`verify_pdf.py --ascii-dates` catches the `2016–17` form again** (#698) - the quantity rule from
+  #533 treated `17` as a bare non-year number, so `MSc Physics, 2016–17`, `Sep 2016–17` and
+  `2019–20 season` passed `/apply` Step 5d although the guide says a year on either side of the
+  dash is enough, and all three were caught before #533. A year followed by a two-digit year is
+  now a date pair; `1500–2000` and `2000–5000` stay quantities. Two new `test_verify_pdf.py`
+  cases; the date-pair one fails on master.
+
+- **Excel logical cells no longer become salary numbers** (#664, `tools/convert_salary_excel.py`) -
+  `TRUE` and `FALSE` cells are skipped as non-numeric instead of turning into counts or
+  salary indices of 1 and 0. Numeric 0 and 1 remain valid, and a count/index pair retains
+  its numeric half when the other cell is logical.
+
 ### Security
 
 - **CI no longer leaves the job token in `.git/config` or expands a PR-controlled name into a
