@@ -71,12 +71,17 @@ ALLOWED_PERMISSIONS = {
     "Bash(bun run .agents/skills/jobkorea-search/cli/src/cli.ts:*)",
     "Bash(bun run .agents/skills/wanted-search/cli/src/cli.ts:*)",
     "Bash(bun run .agents/skills/incruit-search/cli/src/cli.ts:*)",
+    # Country-agnostic: Greenhouse's public Job Board API (company career sites, e.g. Coupang).
+    "Bash(bun run .agents/skills/greenhouse-search/cli/src/cli.ts:*)",
     "Bash(python salary_lookup.py:*)",
     "Bash(python3 salary_lookup.py:*)",
     "Bash(python tools/rank_state.py:*)",
     "Bash(python3 tools/rank_state.py:*)",
     "Bash(python tools/job_key.py:*)",
     "Bash(python3 tools/job_key.py:*)",
+    # ko-market: character-limit check for Korean application answers (reads one file/stdin, no network).
+    "Bash(python tools/ko_char_count.py:*)",
+    "Bash(python3 tools/ko_char_count.py:*)",
     "Bash(python tools/verify_pdf.py:*)",
     "Bash(python3 tools/verify_pdf.py:*)",
     "Bash(python tools/verify_layout.py:*)",

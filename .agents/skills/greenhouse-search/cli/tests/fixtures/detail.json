@@ -1,0 +1,15 @@
+{
+  "absolute_url": "https://www.example-careers.test/jobs/?gh_jid=1000001",
+  "location": { "name": "Seoul, South Korea" },
+  "id": 1000001,
+  "updated_at": "2026-10-14T19:45:11-04:00",
+  "requisition_id": "R-1",
+  "title": "Staff Backend Engineer (Payments)",
+  "company_name": "Examplecorp",
+  "first_published": "2026-10-10T09:00:00-04:00",
+  "language": "en",
+  "application_deadline": "2026-12-31",
+  "content": "&lt;p&gt;We build &lt;strong&gt;payments&lt;/strong&gt; for &amp;quot;everyone&amp;quot; &amp;amp; more.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;What you will do&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Design APIs&lt;/li&gt;\n&lt;li&gt;Run Java &amp;amp; Kotlin services&lt;br&gt;at scale&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;Literal tag text: &amp;lt;b&amp;gt; stays text.&amp;nbsp;Caf&amp;#233;&lt;/p&gt;",
+  "departments": [{ "id": 1, "name": "Engineering", "child_ids": [], "parent_id": null }],
+  "offices": [{ "id": 2, "name": "Seoul", "location": "Seoul, South Korea", "child_ids": [], "parent_id": null }]
+}

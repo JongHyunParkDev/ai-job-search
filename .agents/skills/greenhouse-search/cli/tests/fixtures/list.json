@@ -1,0 +1,54 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://www.example-careers.test/jobs/?gh_jid=1000001",
+      "internal_job_id": 501,
+      "location": { "name": "Seoul, South Korea" },
+      "metadata": [{ "id": 1, "name": "Job Level", "value": "L5", "value_type": "single_select" }],
+      "id": 1000001,
+      "updated_at": "2026-10-14T19:45:11-04:00",
+      "requisition_id": "R-1",
+      "title": "Staff Backend Engineer (Payments)",
+      "company_name": "Examplecorp",
+      "first_published": "2026-10-10T09:00:00-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.example-careers.test/jobs/?gh_jid=1000002",
+      "location": { "name": "Taipei, Taiwan" },
+      "id": 1000002,
+      "updated_at": "2026-10-01T00:00:00-04:00",
+      "title": "Backend Engineer",
+      "company_name": "Examplecorp",
+      "first_published": "2026-09-01T00:00:00-04:00",
+      "language": "en"
+    },
+    {
+      "absolute_url": "https://www.example-careers.test/jobs/?gh_jid=1000003",
+      "location": { "name": "Seoul, South Korea" },
+      "id": 1000003,
+      "updated_at": "2026-10-18T00:00:00-04:00",
+      "title": "[예시] 백엔드 개발자 - 물류",
+      "company_name": "Examplecorp",
+      "first_published": "2026-10-18T00:00:00-04:00",
+      "language": "ko"
+    },
+    {
+      "absolute_url": "https://boards.greenhouse.io/examplecorp/jobs/1000004",
+      "location": { "name": "Remote, United States" },
+      "id": 1000004,
+      "updated_at": "2026-10-19T00:00:00-04:00",
+      "title": "Frontend Engineer",
+      "language": "en"
+    },
+    {
+      "absolute_url": null,
+      "location": null,
+      "id": 1000005,
+      "updated_at": null,
+      "title": "Data Analyst"
+    }
+  ],
+  "meta": { "total": 5 }
+}

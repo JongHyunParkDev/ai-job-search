@@ -27,6 +27,7 @@ Claude Code로 내 프로필을 만들고, 채용공고를 검색해 적합도�
 | 원티드 | `wanted-search` | ⏸ 꺼짐 | 공개 JSON API | robots.txt를 읽을 수 없어(모든 클라이언트에 403) 허용 여부가 확인되지 않았습니다. 게시일 정보는 없습니다 |
 | 잡플래닛 | `jobplanet-search` | 🧪 실험적·꺼짐 | 공개 JSON API | 현재 Bun의 요청을 Cloudflare가 차단해서 실제 검색이 되지 않습니다. 우회는 하지 않습니다 |
 | 링크드인 | `linkedin-search` (원본) | ✅ 켜짐 | 공개 jobs-guest | `-l "Seoul, South Korea"`로 한국 공고를 검색할 수 있습니다 |
+| Greenhouse 채용 사이트 (쿠팡 등) | `greenhouse-search` | ✅ 켜짐 | Greenhouse 공개 Job Board API | 국가와 무관합니다. 회사의 보드 토큰을 `--board`로 넘깁니다(예: `--board coupang -l Seoul`) |
 | 직행 | - | 미지원 | - | 검색 결과를 robots.txt가 막은 API로만 제공해서 만들지 않았습니다 |
 
 - 모든 포털 스킬은 원본의 규격(`search`/`detail`, `--format json|table|plain`, 오류는 stderr JSON + exit 1, 429/5xx 백오프, 런타임 의존성 0, 자체 테스트)을 따릅니다.
@@ -84,12 +85,27 @@ cd cv && lualatex -interaction=nonstopmode main_example_ko.tex
 cd ../cover_letters && xelatex -interaction=nonstopmode cover_example_ko.tex
 ```
 
+## 한국 지원서 가이드와 글자 수 검사
+
+- **[한국 지원서 작성 가이드](docs/ko/korean-applications.md):** 자율양식 이력서의 "공고 요구사항 대응표", 경력 기간 계산, 프리랜서 경력 표기, 자기소개서 문항 패턴, 연봉 처우 협의, 사내 문서보안(DRM) 때문에 PDF가 암호화되는 문제, 대기업 자체 채용 사이트 목록을 정리했습니다. `/apply`는 `08-application-forms.md`의 안내를 따라 이 문서를 참고합니다.
+- **자기소개서 글자 수 검사(`tools/ko_char_count.py`):** 포털마다 다른 기준(공백 포함·제외, 줄바꿈 1자·2자, CP949 바이트)으로 문항별 글자 수를 세고, 빈 줄(연속 줄바꿈)도 찾아냅니다.
+
+```bash
+python tools/ko_char_count.py --in 자기소개서.txt --limit 1000
+python tools/ko_char_count.py --in 자기소개서.txt --limit 1000 --mode nospace --no-blank-lines
+```
+
+입력 파일은 답변마다 첫 줄에 `# 문항 제목`을 쓰고, 답변 사이를 `---` 한 줄로 나눕니다.
+
 ## 원본과의 관계
 
 - 원본 저장소를 주기적으로 병합해서 따라갑니다. 한국판에서 바꾼 내용은 다음과 같습니다.
   - 포털 스킬 폴더 추가
   - 한글 템플릿 2개 추가와 `cover.cls`의 `korean` 옵션
-  - 템플릿 지침(`05`, `06`)의 한국어 안내
-  - `.claude/settings.json`과 `tools/security_guards.py`에 포털 권한 등록
-- 원본의 업데이트 확인 도구(`tools/check_upstream_updates.py`)도 그대로 쓸 수 있습니다.
+  - 템플릿 지침(`05`, `06`)과 지원서 양식 지침(`08`)의 한국어 안내
+  - 한국 지원서 가이드(`docs/ko/`)와 글자 수 검사 도구(`tools/ko_char_count.py`)
+  - `.claude/settings.json`과 `tools/security_guards.py`에 포털·도구 권한 등록
+  - `tools/check_upstream_updates.py`가 Git 출력을 UTF-8로 읽도록 수정(한국어 Windows의 CP949 기본값에서 오류가 나던 문제)
+- **버전 표기 규칙:** 원본 지침 파일(`.claude/skills/job-application-assistant/*.md`)을 고칠 때는 `framework_version`을 `1.4.8-ko.1`처럼 원본 번호 뒤에 `-ko.N`을 붙여 올립니다. 원본의 버전 검사(`check_framework_version.py`)는 변경으로 인정하고, 업데이트 확인 도구는 앞의 원본 번호만 비교하므로 원본이 새 버전을 내면 그대로 알려 줍니다.
+- 원본의 업데이트 확인 도구는 `python tools/check_upstream_updates.py --remote <원본 remote 이름>`으로 실행합니다.
 - 기능 전반에 대한 설명은 원본 [README.md](README.md)를 참고하세요.

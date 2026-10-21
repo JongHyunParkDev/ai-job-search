@@ -1,5 +1,5 @@
 ---
-framework_version: 1.0.0
+framework_version: 1.0.0-ko.1
 ---
 
 # Application Form Fields
@@ -65,6 +65,8 @@ These reward **a specific situation over an adjective**. Most applicants submit 
 4. Present all candidates with counts, recommend one, and say why.
 
 Prefer the version that **maps the candidate's problem onto the employer's problem**, where a truthful mapping exists. That is what "stand out" is actually asking for.
+
+**Korean portals (자기소개서):** count with `python3 tools/ko_char_count.py --in <file> --limit <N>`. Portals differ on whether spaces count (`--mode nospace`), whether a line break is one or two characters (`--mode chars_crlf`), or whether they limit CP949 bytes (`--mode cp949`), and many warn that a blank line hides the end of the answer in print (`--no-blank-lines`). Korean question patterns and conventions are in `docs/ko/korean-applications.md`.
 
 ## Output format
 
