@@ -149,6 +149,8 @@ For each new job, do a rapid fit check (NOT the full evaluation from `04-job-eva
 python3 tools/job_key.py --company "<company>" --title "<title>" --url "<url>"
 ```
 
+**Korean (Hangul) titles - add `--state job_scraper/seen_jobs.json`.** A Hangul title keys on the portal's job id, so the same posting listed on Saramin, JobKorea and Incruit would otherwise get one key per portal and reappear as new on every run. With `--state`, the helper prints the key of an already-seen entry with the same company (`(주)`/`㈜`/`주식회사` ignored) and title (leading `[회사명]`-style tags and a trailing 채용/모집/공고 ignored; hiring-track tags such as `[경력]`/`[인턴]` still distinguish postings), and falls back to the normal key when there is none. Latin titles already key on company+title and are unaffected.
+
 It prints one line: the canonical key for that posting. The key must be a pure function of the posting, because two runs that slugify differently store the same job twice and defeat the dedup this step exists to provide. The helper also length-caps long titles and disambiguates the cap with a hash of the full slug, so a truncated title is stable across runs and two different long titles never collide. `python3 tools/job_key.py --audit` reports entries in an existing state file that predate this rule; it only reports, and never rewrites keys, since a rewritten key breaks the tracker's own company+role matching.
 
 2. Add ALL fetched jobs (new and skipped) to `job_scraper/seen_jobs.json` with structure:

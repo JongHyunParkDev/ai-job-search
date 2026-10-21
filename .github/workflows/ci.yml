@@ -28,7 +28,8 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    # ko-market: the Korean fork's published branch, so its pushes are tested too.
+    branches: [master, ko-market]
   pull_request:
   workflow_dispatch:
 

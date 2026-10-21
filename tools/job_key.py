@@ -33,8 +33,17 @@ to the portal's numeric id from the URL. A title or company that slugifies to
 so whenever the ASCII fold drops letters the surviving fragment is only a
 readable prefix and the identity comes from the same fallback.
 
+A Hangul title keys on the portal's job id, so the same Korean posting listed
+on several portals (Saramin, JobKorea, Incruit) would get one key per portal.
+`--state` gives those the company+title identity Latin titles already have:
+when an already-seen entry has the same company (company-form markers such as
+"(주)"/"㈜" ignored) and the same title (leading "[회사명]"-style tags and a
+trailing 채용/모집/공고 ignored; hiring-track tags such as [경력]/[인턴] still
+count), its key is printed instead of a new one. Latin titles are unaffected.
+
 Usage:
   python3 tools/job_key.py --company "Acme Corp" --title "SOC Analyst (L2)"
+  python3 tools/job_key.py --company "(주)예시" --title "백엔드 개발자" --url "<url>" --state job_scraper/seen_jobs.json
   python3 tools/job_key.py --audit job_scraper/seen_jobs.json
 
 Exit 0 when a key is produced, or when an audit finds nothing. Exit 1 when an
@@ -159,6 +168,71 @@ def make_key(company: str, title: str, url: str = "") -> str:
 _CANONICAL = re.compile(r"^[a-z0-9][a-z0-9-]*_[a-z0-9][a-z0-9-]*$")
 
 
+_HANGUL = re.compile(r"[가-힣]")
+# Korean company-form markers that one portal prints and another omits; NFKC
+# already turns "㈜" into "(주)", so only the expanded spellings are listed.
+_KO_CORP_FORMS = re.compile(r"\((주|유|사|재)\)|주식회사|유한책임회사|유한회사|사단법인|재단법인")
+# Leading bracket tags portals prepend to the same posting: "[티빙]", "[서울]".
+_LEADING_TAG = re.compile(r"^\s*\[([^\]]*)\]")
+# A tag naming the hiring track is kept: "[인턴] X" and "[경력] X" are different jobs.
+_TRACK_WORDS = re.compile(r"신입|경력|인턴|계약|정규|파견|전환|시니어|주니어|senior|junior|intern")
+# Words portals append to the same title: "백엔드 개발자 채용" vs "백엔드 개발자".
+_TRAILING_WORDS = re.compile(r"(채용공고|채용|모집|공고)+$")
+_NOT_WORD = re.compile(r"[^0-9a-z가-힣]+")
+
+
+def _strip_leading_tags(title: str) -> str:
+    """Drop leading [..] tags except hiring-track tags, which are kept as plain words."""
+    kept = []
+    m = _LEADING_TAG.match(title)
+    while m:
+        if _TRACK_WORDS.search(m.group(1)):
+            kept.append(m.group(1))
+        title = title[m.end():]
+        m = _LEADING_TAG.match(title)
+    return " ".join(kept + [title])
+
+
+def _ko_normal(text: str, company: bool = False) -> str:
+    """Spelling-insensitive form of a Korean company or title, for equality checks only.
+
+    Input: the raw string and whether it is a company name. Output: NFKC,
+    casefolded text keeping only Hangul syllables, a-z and digits. A company
+    loses its company-form markers; a title loses leading bracket tags (hiring
+    track tags such as [경력]/[인턴] are kept) and trailing 채용/모집/공고.
+    """
+    t = unicodedata.normalize("NFKC", str(text or "")).casefold()
+    if company:
+        return _NOT_WORD.sub("", _KO_CORP_FORMS.sub("", t))
+    return _TRAILING_WORDS.sub("", _NOT_WORD.sub("", _strip_leading_tags(t)))
+
+
+def find_equivalent(seen: dict, company: str, title: str) -> str | None:
+    """The key of an already-seen posting that is the same Korean posting, or None.
+
+    A Hangul title keys on the portal's job id (make_key's non-Latin rule), so
+    one posting listed on several Korean portals gets one key per portal and
+    reappears as new on every run. A Latin title already keys on company+title;
+    this gives Hangul titles the same company+title identity without changing
+    make_key. Input: the seen_jobs "seen" object, company, title. Output: the
+    first existing key whose normalized company and title both match, or None
+    when the title has no Hangul or nothing matches. Location is not compared,
+    the same as make_key for Latin titles; /scrape Step 2 consolidates
+    same-title postings that differ only by city.
+    """
+    if not _HANGUL.search(str(title or "")):
+        return None
+    want = (_ko_normal(company, company=True), _ko_normal(title))
+    if not all(want):
+        return None
+    for key, entry in seen.items():
+        if isinstance(entry, dict) and (
+            _ko_normal(entry.get("company", ""), company=True), _ko_normal(entry.get("title", ""))
+        ) == want:
+            return key
+    return None
+
+
 def is_canonical(key: str) -> bool:
     """Structurally safe as a dedup key and as an archive folder name."""
     return bool(key) and bool(_CANONICAL.match(key))
@@ -241,12 +315,26 @@ def main() -> int:
     ap.add_argument("--title")
     ap.add_argument("--url", default="")
     ap.add_argument("--audit", nargs="?", const=str(STATE), metavar="STATE_JSON")
+    ap.add_argument("--state", metavar="STATE_JSON",
+                    help="reuse the key of an already-seen equivalent posting (Hangul titles only)")
     args = ap.parse_args()
 
     if args.audit:
         return audit(Path(args.audit))
     if args.company is None or args.title is None:
         ap.error("give --company and --title, or --audit")
+    if args.state:
+        state = Path(args.state)
+        try:
+            doc = json.loads(state.read_text(encoding="utf-8")) if state.exists() else {}
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"cannot read {state}: {exc}", file=sys.stderr)
+            return 1
+        seen = doc.get("seen", doc) if isinstance(doc, dict) else {}
+        existing = find_equivalent(seen if isinstance(seen, dict) else {}, args.company, args.title)
+        if existing:
+            print(existing)
+            return 0
     print(make_key(args.company, args.title, args.url))
     return 0
 
